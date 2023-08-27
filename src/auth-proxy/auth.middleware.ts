@@ -17,8 +17,7 @@ export class AuthMiddleware implements NestMiddleware {
   async use(req: Request, res: Response, next: NextFunction) {
     const cookies = req.headers.cookie;
     const options = {headers: {Cookie: cookies}, withCredentials: true};
-    const authService = this.configService.get('AUTH_SERVICE');
-    const url = `${authService}/auth/user`;
+    const url = this.configService.get('AUTH_SERVICE_GET_USER_URL');
 
     try {
       const resObservable = this.httpService.get<{user: User}>(url, options);
