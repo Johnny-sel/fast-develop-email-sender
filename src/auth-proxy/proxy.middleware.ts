@@ -8,7 +8,7 @@ export class ProxyMiddleware implements NestMiddleware {
   private proxyMiddleware: RequestHandler;
 
   constructor(private configService: ConfigService) {
-    const authService = this.configService.get('APP_AUTH_SERVICE');
+    const authService = this.configService.get('AUTH_SERVICE');
 
     this.proxyMiddleware = createProxyMiddleware({
       target: authService,
